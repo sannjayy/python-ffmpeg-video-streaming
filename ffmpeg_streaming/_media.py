@@ -244,7 +244,7 @@ class Media(object):
         self.inputs = _inputs
 
         first_input = dict(copy.deepcopy(_inputs.inputs[0]))
-        self.input = first_input.get('i', None)
+        self.input = first_input.get('i')
         self.input_temp = first_input.get('is_tmp', False)
 
     def hls(self, _format: Format, **hls_options):

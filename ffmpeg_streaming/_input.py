@@ -27,11 +27,7 @@ class Capture(object):
 
     def _linux(self):
         is_screen = self.options.pop('screen', False)
-        if is_screen:
-            cap = 'x11grab'
-        else:
-            cap = 'v4l2'
-
+        cap = 'x11grab' if is_screen else 'v4l2'
         return {
             'f': cap,
             'i': self.video
@@ -69,10 +65,7 @@ def get_from_cloud(_cloud: Clouds, options: dict):
     global cloud
     if cloud is None:
         save_to = options.pop('save_to', None)
-        cloud = {
-            'i': _cloud.download(save_to, **options),
-            'is_tmp': True if save_to is None else False
-        }
+        cloud = {'i': _cloud.download(save_to, **options), 'is_tmp': save_to is None}
 
     return cloud
 
