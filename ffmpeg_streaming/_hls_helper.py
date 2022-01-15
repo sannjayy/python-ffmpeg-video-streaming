@@ -88,11 +88,12 @@ def sub_info(rep, sub_path) -> list:
     """
     tag = '#EXT-X-MEDIA:'
     info = [
-        f'TYPE=SUBTITLES',
-        f'GROUP-ID="subs"',
-        f'NAME="subtitles"',
-        f'URI="'+sub_path+'"'
+        'TYPE=SUBTITLES',
+        'GROUP-ID="subs"',
+        'NAME="subtitles"',
+        'URI="' + sub_path + '"',
     ]
+
     return [tag + ",".join(info)]
 
 def stream_info(rep, sub_exists) -> list:
@@ -106,7 +107,7 @@ def stream_info(rep, sub_exists) -> list:
         f'NAME="{rep.size.height}"'
     ]
     if sub_exists:
-        info.append(f'SUBTITLES="subs"')
+        info.append('SUBTITLES="subs"')
     custom = rep.options.pop('stream_info', [])
 
     return [tag + ",".join(info + custom)]
